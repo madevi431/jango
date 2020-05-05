@@ -17,10 +17,10 @@ def register(request):
 		obj=candidate(first_name=first_name,last_name=last_name,user_name=user_name,password=password,email=email,contact=contact,age=age)
 		obj.save()
 		sub="login password"
-			body="Please use this password"+" "+password+" "+"to login"
-			receiver=email
-			sender=settings.EMAIL_HOST_USER
-			send_mail(sub,body,sender,[receiver])
+		body="Please use this password {} to login".format(password)
+		receiver=email
+		sender=settings.EMAIL_HOST_USER
+		send_mail(sub,body,sender,[receiver])
 		#return HttpResponse("Please use this password"+" "+password+" "+"to login")
 		return HttpResponse("For password check your registered mailid")
 # form=candidateform(request.POST)# if form.is_valid():# 	obj=form.cleaned_data
