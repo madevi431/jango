@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reports</title>
+</head>
+<body>
+	<table border='1'>
+<thead>
+	<tr>
+		<th>Student Id</th>
+		<th>Student Name</th>
+	</tr>
+</thead>
+	<tbody>
+		{% for info in data %}
+		<tr>
+			<td>{{ info.stuid }}</td>
+			<!--<td><a href="#">{{ info.stuname }}</a></td>-->
+			<td><a href="{% url 'edit' info.id %}">{{ info.stuname }}</a></td>
+			<td>Delete</td>
+
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</body>
+</html>

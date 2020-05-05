@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Score board</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
+	<script type="text/javascript" src="{% static 'js/myjs.js' %}"></script>
+</head>
+<body>
+	<h3 id="id1"> Score Board </h3>
+	<!--<img src="{% static 'image/Django.jpg' %}"-->
+<form action="{%url 'scboard' %}" method='POST'>
+	{% csrf_token %}
+	{% if t1val is None %}
+	<input type="text" name="t1val" value=0 readonly>
+	{%else%}
+	<input type="text" name="t1val" value="{{t1val}}" readonly="">
+	{% endif %}
+	<input type="submit" name="team1" value="team1">
+
+
+	{% if t1val is None %}
+	<input type="text" name="t2val" value=0 readonly>
+	{%else%}
+	<input type="text" name="t2val" value="{{t2val}}" readonly="">
+	{% endif %}
+	<input type="submit" name="team2" value="team2">
+
+
+</form>
+</body>
+</html>

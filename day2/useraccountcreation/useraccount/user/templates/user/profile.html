@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+</head>
+<body>
+<table border="10">
+	<tbody>
+		{% for i in data%}
+		<td>{{i.first_name}}</td>
+		<td>{{i.last_name}}</td>
+		<td>{{i.contact}}</td>
+		<td>{{i.age}}</td>
+		{% endfor %}
+	</body>
+</tbody>
+</html>
