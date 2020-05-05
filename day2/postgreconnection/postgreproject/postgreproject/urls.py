@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/',views.upload,name="upload"),
     path('displayimages',views.displayimages,name="displayimages"),
+    path('table',views.table,name="table")
 ]
 if settings.DEBUG:
 	urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from user.forms import candidateform
 from user.models import candidate
+from django.core.mail import send_mail
+from useraccount import settings
 # Create your views here.
 def register(request):
 	if request.method=='POST':
@@ -14,7 +16,13 @@ def register(request):
 		password=last_name+"@123"
 		obj=candidate(first_name=first_name,last_name=last_name,user_name=user_name,password=password,email=email,contact=contact,age=age)
 		obj.save()
-		return HttpResponse("Please use this password"+" "+password+" "+"to login")
+		sub="login password"
+			body="Please use this password"+" "+password+" "+"to login"
+			receiver=email
+			sender=settings.EMAIL_HOST_USER
+			send_mail(sub,body,sender,[receiver])
+		#return HttpResponse("Please use this password"+" "+password+" "+"to login")
+		return HttpResponse("For password check your registered mailid")
 # form=candidateform(request.POST)# if form.is_valid():# 	obj=form.cleaned_data
 # 	first_name=obj['first_name']
 		# 	last_name=obj['last_name']

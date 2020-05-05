@@ -132,3 +132,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'myapp/static/images')
 
 MEDIA_URL='/images/'
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER="prabhukumari.p@apssdc.in"
+EMAIL_HOST_PASSWORD="prabhu4059"
