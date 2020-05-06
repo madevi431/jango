@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+</head>
+<body>
+{% csrf_token %}
+<h1>hi, welcome {{ request.user }} </h1>
+<a href="{% url 'logout' %}" >Logout</a>
+</body>
+</html>

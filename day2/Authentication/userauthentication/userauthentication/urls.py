@@ -1,4 +1,4 @@
-"""postgreproject URL Configuration
+"""userauthentication URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -15,15 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
-from myapp import views
+from userauth import views
+from django.contrib.auth import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('upload/',views.upload,name="upload"),
-    path('displayimages',views.displayimages,name="displayimages"),
-    path('table',views.table,name="table"),
+    path('signup/',views.signup,name='signup'),
+    path('home/',views.home,name='home'),
+    path('signin/',v.LoginView.as_view(template_name='userauth/login.html'),name="login"),
+    path('signout/',v.LogoutView.as_view(template_name='userauth/logout.html'),name="logout"),
 ]
-if settings.DEBUG:
-	urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
