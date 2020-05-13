@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Allimages</title>
+</head>
+<body>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Image</th>
+		</tr>
+
+	</thead>
+	<tbody>
+	{% for row in data %}
+	<tr>
+	<td> {{row.Name}} </td>
+    <td><img src="/photos/{{ row.image }}" height=150px width=150px></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+</body>
+</html>

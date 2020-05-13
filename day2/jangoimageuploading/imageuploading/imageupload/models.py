@@ -6,4 +6,4 @@ class upload(models.Model):
     image = models.ImageField(upload_to='photos/')
 
     def __str__(self):
-        return self.Name+self.image
+        return self.Name+" "+str(self.image)
