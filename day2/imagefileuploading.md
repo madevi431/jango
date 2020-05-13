@@ -55,7 +55,7 @@ class upload(models.Model):
     image = models.ImageField(upload_to='images/')
 
     def __str__(self):
-        return self.Name+return self.image
+        return self.Name+" "+str(self.image)
   ```
 The location of the uploaded image will be in `MEDIA_ROOT/images`. In Django, the `MEDIA_ROOT` setting is where we define the location of all user uploaded items. We'll set that now.
 
@@ -119,6 +119,18 @@ If you go to http://127.0.0.1:8000/admin you'll be able to log in to the Django 
 
 <img src="images/djangadminpage.PNG" />
 
+Click on the "+ Add" link next to Uploads. You can download and add whatever you like
+<img src="images/djangodatabasedetails.PNG" />
+
+Upon "Save" you will be redirected to the Uploads page where we can see all our image upolads.
+
+<img src="image/djangoadmindatabase" />
+
+If you look within the local media folder in your project you'll see under images there is now the apssdc_rcwSXwg.png image file under photos that was what MEDIA_URL would do.
+
+Ok, so at this point we're done with the basics. But let's take it a step further and display our imageupload which means urls.py, views.py, and template files.
+
+## URLS
 
 
 
