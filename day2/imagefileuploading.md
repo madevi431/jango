@@ -70,7 +70,11 @@ Open up `imageuploading/settings.py` in your text editor. We will add two new co
 <li> MEDIA_URL is the URL we can use in our templates for the files</li>
 </ul>
 
-Now letus store all images in the `static` folder.For that create a static folder inside our app.After that create an images folder inside static folder
+Now letus store all images in the `static` folder.For that create a static folder inside our app.After that create an `images` folder inside static folder
+
+<img src="images/staticfolderimage.PNG" />
+    
+
 
 
 
