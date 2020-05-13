@@ -1,5 +1,5 @@
 ## Image File uploading in Django
-In this we will learn how to implement image and file uploading with django
+In this we will learn how to implement image file uploading with django
 ## Setup
 Open the command line and navigate to which directory you want to create the project.
 First,we need to install `pillow` which is a Python image process library Django relies on for image files.
@@ -127,20 +127,124 @@ Upon "Save" you will be redirected to the Uploads page where we can see all our 
 <img src="images/djangoadmindatabase.PNG" />
 
 If you look within the local media folder in your project you'll see under images there is now the apssdc_rcwSXwg.png image file under photos that was what MEDIA_URL would do.
+<img src="images/photo.PNG" />
 
 Ok, so at this point we're done with the basics. But let's take it a step further and display our imageupload which means urls.py, views.py, and template files.
 
 ## URLS
+We'll need two urls.py file updates. First at the project-level imageuploading/urls.py files we need to add imports for settings and static and views.Then define a route for the `imageupload` app. Note,we also need to add the `MEDIA_URL` if settings are in DEBUG mode, otherwise we won't be able to view uploaded images locally.
 
+```python
+#imageuploading/urls.py
 
+from django.contrib import admin
+from django.urls import path
+from django.conf import settings #new
+from django.conf.urls.static import static #new
+from imageupload import views #new
 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('home/', views.home,name="home"), #new
+]
 
+if settings.DEBUG: #new
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+## Forms
+Now we can add a form so regular users, who wouldn't have access to the admin, can also upload photos. That means creating a new page with a template(means html form).We can extend Django's built-in ModelForm also,using forms.
+Let us proceed using Django's built-in ModelForm.Create a newfile within the app `imageupload/forms.py` and create a class by importing the model that you have created.
 
+<img src="images/forms.PNG" />
 
+```python
+#imageupload/forms.py
+from django.forms import ModelForm
+from imageupload.models import upload
+class uploadform(ModelForm):
+	class Meta:
+		model=uploadform
+		fields='__all__'
+```
+## Views
+create a `home` view that uses the model 
+```python
+from django.shortcuts import render
+from django.http import HttpResponse #new
+from imageupload.forms import uploadform #new
+from imageupload.models import upload #new
 
+def home(request):
+	if request.method=="POST":
+		form=uploadform(request.POST,request.FILES)
+		if form.is_valid():
+			form.save()
 
+		data=upload.objects.all()
+			
+		return render(request,'imageupload/allimages.html',{'data':data})
+	form=uploadform()
+	return render(request,'imageupload/home.html',{'form':form})
+ ```
+ ## Templatesv 
+ Here we used two templates in order to upload the file `home.html`and view all the images `allimages` that we have uploaded
+ Now create a template `home.html`, within the app `imageupload/templates/imageupload/home.html` and and write the htmlcode
+ 
+ <img src='images/templates.PNG' />
+ 
+```html
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+</head>
+<body>
+	<form action="{% url 'home' %}" method="POST" enctype="multipart/form-data" >
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit"> Upload</button>
+		
+	</form>
+</body>
+</html>
+```
+Also create a template `allimages.html` and write down the htmlcode
+<img src="images/allimageshtml.PNG" />
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Allimages</title>
+</head>
+<body>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Image</th>
+		</tr>
 
+	</thead>
+	<tbody>
+	{% for row in data %}
+	<tr>
+	<td> {{row.Name}} </td>
+    <td><img src="/photos/{{ row.image }}" height=150px width=150px></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+</body>
+</html>
+```
+
+Ok, that's it! Make sure the server is running with the python manage.py runserver command and navigate to our homepage at http://127.0.0.1:8000/home. Refresh the page if needed.
+
+<img src="images/homepage.PNG" />
+
+After giving the details,click on upload.You will be redirected to the allimages.html which you can see all the image that you have uploaded
+<img src="images/allimages.PNG" />
 
 
 
