@@ -132,7 +132,7 @@ If you look within the local media folder in your project you'll see under image
 
 Ok, so at this point we're done with the basics. But let's take it a step further and display our imageupload which means urls.py, views.py, and template files.
 
-## URLS
+## URLs
 We'll need two urls.py file updates. First at the project-level `imageuploading/urls.py` files we need to add imports for settings and static and views.Then define a route for the `imageupload` app. Note,we also need to add the `MEDIA_URL` if settings are in DEBUG mode, otherwise we won't be able to view uploaded images locally.
 
 ```python
