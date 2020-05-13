@@ -186,7 +186,7 @@ def home(request):
 	form=uploadform()
 	return render(request,'imageupload/home.html',{'form':form})
  ```
- ## Templatesv 
+ ## Templates
  Here we used two templates in order to upload the file `home.html`and view all the images `allimages` that we have uploaded
  Now create a template `home.html`, within the app `imageupload/templates/imageupload/home.html` and and write the htmlcode
  
@@ -238,12 +238,12 @@ Also create a template `allimages.html` and write down the htmlcode
 </body>
 </html>
 ```
-
 Ok, that's it! Make sure the server is running with the python manage.py runserver command and navigate to our homepage at http://127.0.0.1:8000/home. Refresh the page if needed.
 
 <img src="images/homepage.PNG" />
 
 After giving the details,click on upload.You will be redirected to the allimages.html which you can see all the image that you have uploaded
+
 <img src="images/allimages.PNG" />
 
 
