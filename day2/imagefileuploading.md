@@ -124,7 +124,7 @@ Click on the "+ Add" link next to Uploads. You can download and add whatever you
 
 Upon "Save" you will be redirected to the Uploads page where we can see all our image upolads.
 
-<img src="image/djangoadmindatabase" />
+<img src="images/djangoadmindatabase.PNG" />
 
 If you look within the local media folder in your project you'll see under images there is now the apssdc_rcwSXwg.png image file under photos that was what MEDIA_URL would do.
 
