@@ -50,7 +50,7 @@ We'll also include a __str__ method below so that the Name  and image appears in
 #imageupload/models.py
 from django.db import models
 
-class imageupload(models.Model):
+class upload(models.Model):
     Name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/')
 
@@ -70,11 +70,54 @@ Open up `imageuploading/settings.py` in your text editor. We will add two new co
 <li> MEDIA_URL is the URL we can use in our templates for the files</li>
 </ul>
 
-Now letus store all images in the `static` folder.For that create a static folder inside our app.After that create an images folder inside static folder
+Now letus store all images in the `static` folder.For that create a static folder inside our app.After that create an `images` folder inside static folder
+
+<img src="images/staticfolderimage.PNG" />
+
+Now let us add the `MEDIA_ROOT` and `MEDIA_URL` to our settings.py
+```python
+#imageuploading/settings.py
+MEDIA_ROOT=os.path.join(BASE_DIR,'imageupload/static/images')
+
+MEDIA_URL='/photos/'
+```
+In MEDIA_ROOT we are giving our filepath i,e `imageupload/static/images ` all useruploaded files will configure to this path.
+In MEDIA_URL we have given `photos` i,e all the user uploaded files will be created under the photos which creates in the `images` folder that you will see later on.
+
+## Admin
+Now update the `imageupload/admin.py` file so that we can see our `imageupload` app in the Django admin.
+```python
+#imageupload/admin.py
+from django.contrib import admin
 
 
+from imageupload.models import upload
+admin.site.register(upload)
+```
+Generate a new migrations file  and migrate to upadte the database by running the following commands in the cmd
+```
+F:\jango\jangoimageuploading\imageuploading>python manage.py makemigrations
+Migrations for 'imageupload':
+  imageupload\migrations\0001_initial.py
+    - Create model upload
+```
+```
+F:\jango\jangoimageuploading\imageuploading>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, imageupload, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+```
+Now we can create a superuser account to access the admin and then execute runserver to spin up the local web server
+```
+python manage.py createsuperuser
+python mangage.py runserver
+```
+If you go to http://127.0.0.1:8000/admin you'll be able to log in to the Django admin site. It should redirect you to this page:
 
-
+<img src="images/djangadminpage.PNG" />
 
 
 
