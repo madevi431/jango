@@ -132,7 +132,7 @@ If you look within the local media folder in your project you'll see under image
 Ok, so at this point we're done with the basics. But let's take it a step further and display our imageupload which means urls.py, views.py, and template files.
 
 ## URLS
-We'll need two urls.py file updates. First at the project-level imageuploading/urls.py files we need to add imports for settings and static and views.Then define a route for the `imageupload` app. Note,we also need to add the `MEDIA_URL` if settings are in DEBUG mode, otherwise we won't be able to view uploaded images locally.
+We'll need two urls.py file updates. First at the project-level `imageuploading/urls.py` files we need to add imports for settings and static and views.Then define a route for the `imageupload` app. Note,we also need to add the `MEDIA_URL` if settings are in DEBUG mode, otherwise we won't be able to view uploaded images locally.
 
 ```python
 #imageuploading/urls.py
@@ -152,8 +152,8 @@ if settings.DEBUG: #new
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 ## Forms
-Now we can add a form so regular users, who wouldn't have access to the admin, can also upload photos. That means creating a new page with a template(means html form).We can extend Django's built-in ModelForm also,using forms.
-Let us proceed using Django's built-in ModelForm.Create a newfile within the app `imageupload/forms.py` and create a class by importing the model that you have created.
+Now we can add a form so regular users, who wouldn't have access to the admin, can also upload photos.We can extend Django's built-in ModelForm in `forms.py` or we can create our own html form in templates
+Let us proceed using Django's built-in ModelForm.Create a newfile within the app `imageupload/forms.py` and create a Modelform by importing the model that you have created.
 
 <img src="images/forms.PNG" />
 
@@ -167,7 +167,8 @@ class uploadform(ModelForm):
 		fields='__all__'
 ```
 ## Views
-create a `home` view that uses the model 
+create a `home` view that uses the model and and templates
+
 ```python
 from django.shortcuts import render
 from django.http import HttpResponse #new
@@ -176,14 +177,14 @@ from imageupload.models import upload #new
 
 def home(request):
 	if request.method=="POST":
-		form=uploadform(request.POST,request.FILES)
+		form=uploadform(request.POST,request.FILES) #uploading data given by the user in home page to database
 		if form.is_valid():
 			form.save()
 
-		data=upload.objects.all()
+		data=upload.objects.all() #retreving all the data from the database
 			
-		return render(request,'imageupload/allimages.html',{'data':data})
-	form=uploadform()
+		return render(request,'imageupload/allimages.html',{'data':data}) #sending all the retrived data to allimages.html
+	form=uploadform() 
 	return render(request,'imageupload/home.html',{'form':form})
  ```
  ## Templates
@@ -208,9 +209,12 @@ def home(request):
 	</form>
 </body>
 </html>
+
 ```
 Also create a template `allimages.html` and write down the htmlcode
+
 <img src="images/allimageshtml.PNG" />
+
 ```html
 <!DOCTYPE html>
 <html>
