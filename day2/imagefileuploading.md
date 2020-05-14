@@ -61,7 +61,13 @@ The location of the uploaded image will be in `MEDIA_ROOT/images`. In Django, th
 
 <p>If we want to use a regular file here the only difference could be to change <b>ImageField</b> to <b>FileField</b>.</p>
 
-### MEDIA_ROOT
+The files uploaded to `FileField` or `ImageField` are not stored in the database but in the filesystem.
+
+`FileField` and `ImageField` are created as a string field in the database (usually VARCHAR), containing the reference to the actual file.
+
+If you delete a model instance containing `FileField` or `ImageField`, Django will not delete the physical file, but only the reference to the file.
+
+### MEDIA_ROOT and MEDIA_URL
 
 Open up `imageuploading/settings.py` in your text editor. We will add two new configurations. By default MEDIA_URL and MEDIA_ROOT are empty and not displayed so we need to configure them:
 
@@ -75,6 +81,7 @@ Now letus store all images in the `static` folder.For that create a static folde
 <img src="images/staticfolderimage.PNG" />
 
 Now let us add the `MEDIA_ROOT` and `MEDIA_URL` to our settings.py
+
 ```python
 #imageuploading/settings.py
 MEDIA_ROOT=os.path.join(BASE_DIR,'imageupload/static/images')
@@ -178,7 +185,7 @@ from imageupload.models import upload #new
 
 def home(request):
 	if request.method=="POST":
-		form=uploadform(request.POST,request.FILES) #uploading data given by the user in home page to database
+		form=uploadform(request.POST,request.FILES) 
 		if form.is_valid():
 			form.save()
 
@@ -187,7 +194,10 @@ def home(request):
 		return render(request,'imageupload/allimages.html',{'data':data}) #sending all the retrived data to allimages.html
 	form=uploadform() 
 	return render(request,'imageupload/home.html',{'form':form})
+
  ```
+ When files are submitted to the server, the file data ends up placed in `request.FILES`.The `request.FILES` is a dictionary-like object. Each key in request.FILES is the name from the `<input type="file" name="" />` that you can see below html code.Each value in `request.FILES` is an UploadedFile instance.
+ 
  ## Templates
  Here we used two templates in order to upload the file `home.html`and view all the images `allimages` that we have uploaded
  Now create a template `home.html`, within the app `imageupload/templates/imageupload/home.html` and and write the htmlcode
@@ -212,6 +222,10 @@ def home(request):
 </html>
 
 ```
+It is mandatory for the HTML form to have the attribute `enctype="multipart/form-data"` set correctly. Otherwise the `request.FILES` will be empty.
+
+
+
 Also create a template `allimages.html` and write down the htmlcode
 
 <img src="images/allimageshtml.PNG" />
