@@ -51,7 +51,7 @@ We'll also include a __str__ method below so that the Name  and image appears in
 from django.db import models
 
 class upload(models.Model):
-    Name = models.CharField(max_length=100)
+    Name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='photos/')
 
     def __str__(self):
