@@ -52,12 +52,12 @@ from django.db import models
 
 class upload(models.Model):
     Name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='photos/')
 
     def __str__(self):
         return self.Name+" "+str(self.image)
   ```
-The location of the uploaded image will be in `MEDIA_ROOT/images`. In Django, the `MEDIA_ROOT` setting is where we define the location of all user uploaded items. We'll set that now.
+The location of the uploaded image will be in `MEDIA_ROOT/photos`. In Django, the `MEDIA_ROOT` setting is where we define the location of all user uploaded items. We'll set that now.
 
 <p>If we want to use a regular file here the only difference could be to change <b>ImageField</b> to <b>FileField</b>.</p>
 
