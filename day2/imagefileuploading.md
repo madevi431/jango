@@ -44,18 +44,26 @@ INSTALLED_APPS = [
 ]
 ```
 ## Models
-Starting with the database model is a good choice.In our case our model `imageupload` has only two fields `Name` and `image`.
-We'll also include a __str__ method below so that the Name  and image appears in our Django admin later on.
+Starting with the database model is a good choice.In our case our model `imageupload` has a  `image` fields including other fields.
+We'll also include a __str__ method below so that the firstName  and image appears in our Django admin later on.
 ```python
 #imageupload/models.py
 from django.db import models
 
+# Create your models here.
 class upload(models.Model):
-    Name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='photos/')
+	gender_vals = [('Male','Male'),('FeMale','FeMale')]
+	firstName = models.CharField(max_length=100)
+	lastName = models.CharField(max_length=100)
+	emailId = models.EmailField(null = True)
+	phoneNo = models.CharField(max_length=10)
+	age = models.IntegerField(null=True)
+	gender = models.CharField(max_length=10,choices=gender_vals )
+	date_of_birth = models.DateField(null=True)
+	image = models.ImageField(upload_to='photos/')
 
-    def __str__(self):
-        return self.Name+" "+str(self.image)
+	def __str__(self):
+		return self.firstName+" "+str(self.image)
   ```
 The location of the uploaded image will be in `MEDIA_ROOT/photos`. In Django, the `MEDIA_ROOT` setting is where we define the location of all user uploaded items. We'll set that now.
 
