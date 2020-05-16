@@ -145,7 +145,7 @@ Upon "Save" you will be redirected to the Uploads page where we can see all our 
 
 If you look within the local folder in your project you'll see under images there is now the apssdc_frylZjD.png image file under photos that was what MEDIA_URL would do.
 
-<img src="imagessublimeimage.PNG" />
+<img src="images/sublimeimage.PNG" />
 
 Ok, so at this point we're done with the basics. But let's take it a step further and display our imageupload which means urls.py, views.py, and template files.
 
