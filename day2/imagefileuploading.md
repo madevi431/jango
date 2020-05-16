@@ -214,6 +214,10 @@ def home(request):
  
  <img src='images/templates.PNG' />
  
+ Incase if you want to apply bootstrap to your template you can add.For that,you need to create cs and jss folders in static folder if you want use it offline
+ 
+ <img src='images/bootstrap.PNG' />
+ 
 ```html
 
 <!DOCTYPE html>
