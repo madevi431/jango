@@ -132,18 +132,20 @@ python mangage.py runserver
 ```
 If you go to http://127.0.0.1:8000/admin you'll be able to log in to the Django admin site. It should redirect you to this page:
 
+<img src="images/loginadmin.PNG" />
+
 <img src="images/djangadminpage.PNG" />
 
 Click on the "+ Add" link next to Uploads. You can download and add whatever you like
-<img src="images/djangodatabasedetails.PNG" />
+<img src="images/detailsedited.PNG" />
 
 Upon "Save" you will be redirected to the Uploads page where we can see all our image upolads.
 
-<img src="images/djangoadmindatabase.PNG" />
+<img src="images/imagedetailsedited.PNG" />
 
 If you look within the local folder in your project you'll see under images there is now the apssdc_frylZjD.png image file under photos that was what MEDIA_URL would do.
 
-<img src="images/photo.PNG" />
+<img src="imagessublimeimage.PNG" />
 
 Ok, so at this point we're done with the basics. But let's take it a step further and display our imageupload which means urls.py, views.py, and template files.
 
@@ -280,7 +282,7 @@ Also create a template `allimages.html` and write down the htmlcode
 ```
 Ok, that's it! Make sure the server is running with the python manage.py runserver command and navigate to our homepage at http://127.0.0.1:8000/home. Refresh the page if needed.
 
-<img src="images/homepage.PNG" />
+<img src="images/form.PNG" />
 
 After giving the details,click on upload.You will be redirected to the allimages.html which you can see all the image that you have uploaded
 
