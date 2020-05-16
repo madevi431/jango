@@ -141,7 +141,7 @@ Upon "Save" you will be redirected to the Uploads page where we can see all our 
 
 <img src="images/djangoadmindatabase.PNG" />
 
-If you look within the local folder in your project you'll see under images there is now the apssdc_rcwSXwg.png image file under photos that was what MEDIA_URL would do.
+If you look within the local folder in your project you'll see under images there is now the apssdc_frylZjD.png image file under photos that was what MEDIA_URL would do.
 
 <img src="images/photo.PNG" />
 
