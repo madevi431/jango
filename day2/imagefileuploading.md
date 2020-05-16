@@ -214,7 +214,7 @@ def home(request):
  
  <img src='images/templates.PNG' />
  
- Incase if you want to apply bootstrap to your template you can add.For that,you need to create cs and jss folders in static folder if you want use it offline
+ Incase if you want to apply bootstrap to your template you can add.For that,you need to create css and js folders in static folder and add css and js files if you want to use it offline.
  
  <img src='images/bootstrap.PNG' />
  
@@ -255,7 +255,7 @@ It is mandatory for the HTML form to have the attribute `enctype="multipart/form
 
 Also create a template `allimages.html` and write down the htmlcode
 
-<img src="images/allimageshtml.PNG" />
+<img src="images/allimagesphoto.PNG" />
 
 ```html
 <!DOCTYPE html>
