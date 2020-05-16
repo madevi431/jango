@@ -217,15 +217,28 @@ def home(request):
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	{% load static %}
+	<title>Register Here..</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	
 </head>
 <body>
+	<div  class="row justify-content-center">
 	<form action="{% url 'home' %}" method="POST" enctype="multipart/form-data" >
+		<div class="card">
+			<div class="card-header bg-info">Register Here</div>
+			<div class="card-body">
+
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button type="submit"> Upload</button>
+	</div>
+	<div class="card-footer">
+		<button type="submit" class="btn btn-primary"> Submit</button>
+	</div>
 		
 	</form>
+</div>	
 </body>
 </html>
 
@@ -256,7 +269,7 @@ Also create a template `allimages.html` and write down the htmlcode
 	<tbody>
 	{% for row in data %}
 	<tr>
-	<td> {{row.Name}} </td>
+	<td> {{row.firstName}} </td>
     <td><img src="/photos/{{ row.image }}" height=150px width=150px></td>
     </tr>
 {% endfor %}
