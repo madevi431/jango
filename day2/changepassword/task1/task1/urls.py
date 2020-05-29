@@ -1,4 +1,4 @@
-8+"""useraccount URL Configuration
+"""task1 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from user import views
-
+from account import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/',views.register,name='register'),
+   
     path('login/',views.login,name='login'),
-    
-    ]
+    path('reset/',views.reset,name='reset'),
+]

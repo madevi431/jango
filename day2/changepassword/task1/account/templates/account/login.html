@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+	<div  class="row justify-content-center">
+	{% if messages %}
+	{% for msg in messages %}
+	<div class="alert">{{ msg }}</div>
+	{% endfor %}
+	{% endif %}
+	
+	<form action="{% url 'login' %}" method="POST">
+		<div class="card">
+			<div class="card-header bg-info">Login</div>
+			<div class="card-body">
+		{% csrf_token %}
+		
+		<p>
+			<label> Email Id</label>
+			<input type="email" name="email">
+		</p>
+		<p>
+			<label>password</label>
+			<input type="password" name="password">
+		</p>
+			<div class="card-footer">
+			<button type="Sumit" class="btn btn-primary">Submit</button>
+		</div>
+
+		
+		</div>
+	
+</form>
+</div>
+</body>
+</html>

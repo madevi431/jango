@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Subscribe</title>
+</head>
+<body>
+	{% if messages %}
+	{% for msg in messages %}
+	<div class="alert">{{ msg }}</div>
+	{% endfor %}
+	{% endif %}
+	<form action="{% url 'home' %}" method="POST">
+		
+	
+		{% csrf_token %}
+		<p>
+			<label>Name</label>
+			<input type="text" name="name">
+		</p>
+		<p>
+			<label> Email Id</label>
+			<input type="email" name="email">
+		</p>
+		
+			<button type="Sumit">Login</button>
+</form>
+</body>
+</html>
